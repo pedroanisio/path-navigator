@@ -1,0 +1,10 @@
+{
+  "paths": [
+    "~",
+    "~/Documents",
+    "~/Downloads",
+    "/var/log",
+    "/etc",
+    "/usr/local"
+  ]
+}
