@@ -1,6 +1,13 @@
-# path-navigator 🧭
+# Path Navigator 🧭
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python](https://img.shields.io/badge/python-3.x-blue.svg)](https://www.python.org/)
+[![Shell](https://img.shields.io/badge/shell-bash%20%7C%20zsh-green.svg)](https://github.com/pedroanisio/path-navigator)
+[![GitHub](https://img.shields.io/github/stars/pedroanisio/path-navigator?style=social)](https://github.com/pedroanisio/path-navigator)
 
 A fast and intuitive CLI tool for navigating to your favorite directories in Linux/Unix shells. Stop typing long paths - just press `n` and select where you want to go!
+
+**[Installation](#installation) • [Usage](#usage-) • [Configuration](#configuration-) • [Contributing](#contributing-)**
 
 ## Features ✨
 
@@ -36,21 +43,39 @@ Select (1-6, e, q): 5
 
 ## Installation 🚀
 
-### Prerequisites
+### Quick Install (Recommended)
 
+```bash
+# Clone the repository
+git clone https://github.com/pedroanisio/path-navigator.git
+cd path-navigator
+
+# Run the automated installer
+chmod +x setup.sh
+./setup.sh
+
+# Reload your shell
+source ~/.bashrc  # or ~/.zshrc for Zsh users
+```
+
+### Manual Installation
+
+#### Prerequisites
 - Python 3.x
 - Bash or Zsh shell
 - Debian/Ubuntu (or any Linux distribution)
 
-### Step 1: Install the Python Script
+#### Step 1: Install the Python Script
 
 ```bash
-# Create a bin directory in your home (if it doesn't exist)
+# Method 1: Download from GitHub
+wget https://raw.githubusercontent.com/pedroanisio/path-navigator/main/src/path_navigator.py -O ~/bin/path_navigator.py
+# or using curl
+curl -o ~/bin/path_navigator.py https://raw.githubusercontent.com/pedroanisio/path-navigator/main/src/path_navigator.py
+
+# Method 2: Manual creation
 mkdir -p ~/bin
-
-# Download or create the script
 nano ~/bin/path_navigator.py
-
 # Paste the Python script content and save (Ctrl+X, Y, Enter)
 
 # Make it executable
@@ -60,7 +85,6 @@ chmod +x ~/bin/path_navigator.py
 ### Step 2: Add Shell Function to Your Shell Config
 
 #### For Bash Users
-
 ```bash
 # Add to ~/.bashrc
 cat >> ~/.bashrc << 'EOF'
@@ -100,7 +124,6 @@ source ~/.bashrc
 ```
 
 #### For Zsh Users
-
 ```bash
 # Add to ~/.zshrc (same content as above)
 # Then reload:
@@ -145,13 +168,11 @@ source ~/.zshrc
 ## Configuration 📁
 
 ### Config File Location
-
 ```
 ~/.config/path_navigator/paths.json
 ```
 
 ### Default Paths
-
 1. `~` (Home directory)
 2. `~/Documents`
 3. `~/Downloads`
@@ -170,7 +191,6 @@ nano ~/.config/path_navigator/paths.json
 ```
 
 Example config file:
-
 ```json
 {
   "paths": [
@@ -187,7 +207,6 @@ Example config file:
 ## Examples 🎯
 
 ### Example 1: Quick Home Navigation
-
 ```bash
 # From anywhere, go home instantly
 n1
@@ -196,7 +215,6 @@ n 1
 ```
 
 ### Example 2: Add Your Project Directory
-
 ```bash
 nedit
 # Press 'a' to add
@@ -205,7 +223,6 @@ nedit
 ```
 
 ### Example 3: Navigate to Logs
-
 ```bash
 # If /var/log is path #4
 n 4
@@ -213,7 +230,6 @@ n 4
 ```
 
 ### Example 4: Check Your Paths
-
 ```bash
 nlist
 
@@ -232,29 +248,22 @@ Total: 6 paths configured
 ## Advanced Features 🔧
 
 ### Path Validation
-
 - ✓ indicates the path exists and is accessible
 - ✗ indicates the path doesn't exist or isn't accessible
 - You can still save invalid paths (they might be mounted later)
 
 ### Direct Navigation
-
 Skip the menu when you know the path number:
-
 ```bash
 n 5  # Goes directly to path #5
 ```
 
 ### Debugging
-
 If something isn't working:
-
 ```bash
 ndebug
 ```
-
 This shows:
-
 - Config file location
 - File permissions
 - Current configuration
@@ -263,19 +272,16 @@ This shows:
 ## Troubleshooting 🔍
 
 ### Paths Not Saving
-
 1. Check permissions: `ndebug`
 2. Ensure config directory exists: `ls -la ~/.config/path_navigator/`
 3. Try saving again with `nedit`
 
 ### Command Not Found
-
 1. Ensure the script is executable: `chmod +x ~/bin/path_navigator.py`
 2. Reload your shell config: `source ~/.bashrc` or `source ~/.zshrc`
 3. Check if Python 3 is installed: `python3 --version`
 
 ### Menu Shows Wrong Number of Paths
-
 - The tool supports up to 10 paths
 - Use `nlist` to see all configured paths
 - Use `nedit` to add or remove paths
@@ -283,7 +289,6 @@ This shows:
 ## Technical Details 🛠
 
 ### How It Works
-
 1. The Python script handles the menu and path selection
 2. It outputs the selected path to stdout
 3. The shell function captures this output
@@ -291,7 +296,6 @@ This shows:
 5. This allows changing the parent shell's directory (not possible from a subprocess)
 
 ### File Structure
-
 ```
 ~/
 ├── bin/
@@ -302,7 +306,6 @@ This shows:
 ```
 
 ### Requirements
-
 - Python 3.x (uses pathlib, json)
 - Unix-like shell (Bash, Zsh)
 - Read/write permissions for ~/.config directory
@@ -310,7 +313,6 @@ This shows:
 ## Contributing 🤝
 
 Feel free to modify the script to suit your needs! Some ideas for enhancements:
-
 - Add path history/frecency tracking
 - Integrate with fuzzy finders (fzf, etc.)
 - Add path categories or tags
@@ -319,12 +321,25 @@ Feel free to modify the script to suit your needs! Some ideas for enhancements:
 
 ## License 📄
 
-This tool is provided as-is for personal use. Feel free to modify and share!
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/pedroanisio/path-navigator/blob/main/LICENSE) file for details.
 
 ## Author ✍️
 
-Created for easy directory navigation on Debian/Linux systems.
+Created by [Pedro Anísio](https://github.com/pedroanisio)
+
+- **GitHub**: [@pedroanisio](https://github.com/pedroanisio)
+- **Repository**: [path-navigator](https://github.com/pedroanisio/path-navigator)
+
+## Support 💬
+
+If you find this tool useful, please consider:
+- ⭐ Starring the [repository](https://github.com/pedroanisio/path-navigator)
+- 🐛 Reporting bugs via [issues](https://github.com/pedroanisio/path-navigator/issues)
+- 💡 Suggesting new features
+- 📖 Improving documentation
 
 ---
 
 **Pro Tip**: Add your most frequently used directories and use the number shortcuts (`n1`, `n2`, etc.) for lightning-fast navigation! 🚀
+
+<p align="center">Made with ❤️ for the terminal lovers</p>
